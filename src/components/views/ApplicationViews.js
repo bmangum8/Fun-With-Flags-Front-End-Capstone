@@ -2,8 +2,9 @@
 import { Outlet, Route, Routes } from "react-router-dom"
 import { FactForm } from "../facts/FactForm"
 import { FactList } from "../facts/FactList"
-import { CountriesDropDown } from "../play/CountriesDropDown"
-import { FlagGenerator } from "../play/FlagGenerator"
+//import { CountriesDropDown } from "../play/CountriesDropDown"
+//import { FlagGenerator } from "../play/FlagGenerator"
+import { PlayContainer } from "../play/PlayContainer"
 import { Rules } from "../rules/Rules"
 //import all the components we made that need routes: Home, Play, Flag Facts, and probably other things
     
@@ -22,8 +23,7 @@ export const ApplicationViews = () => {
                     <Route path="rules" element={ <Rules /> } />
                     <Route path="facts" element={ <FactList /> } />
                     <Route path="fact/create" element={ <FactForm />} />
-                    <Route path="play" element={ <FlagGenerator />} />
-                    <Route path="play" element={ <CountriesDropDown />} />
+                    <Route path="play" element={ <PlayContainer />} />
                 </Route>
             </Routes>
         )
