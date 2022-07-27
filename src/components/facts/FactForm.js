@@ -14,6 +14,9 @@ navigate user back to fact list
 
 
 export const FactForm = () => {
+    const localFlagUser = localStorage.getItem("flag_user")
+    const flagUserObject = JSON.parse(localFlagUser)
+   
     //add default properties to initial state object
     const [fact, update] =useState({
         description: "",
@@ -22,8 +25,6 @@ export const FactForm = () => {
 
     const navigate = useNavigate()
     
-    const localFlagUser = localStorage.getItem("flag_user")
-    const flagUserObject = JSON.parse(localFlagUser)
 
     //send the new object to the facts array (would be API post request)
     const handleSaveButtonClick = (event) => {
@@ -52,7 +53,7 @@ export const FactForm = () => {
     .then(response => response.json())
     .then(() => {
         //navigate the user back to /factForm
-        navigate("/FactForm")
+        navigate("/Facts")
     })
 }
 

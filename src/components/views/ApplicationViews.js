@@ -2,8 +2,6 @@
 import { Outlet, Route, Routes } from "react-router-dom"
 import { FactForm } from "../facts/FactForm"
 import { FactList } from "../facts/FactList"
-//import { CountriesDropDown } from "../play/CountriesDropDown"
-//import { FlagGenerator } from "../play/FlagGenerator"
 import { PlayContainer } from "../play/PlayContainer"
 import { Rules } from "../rules/Rules"
 //import all the components we made that need routes: Home, Play, Flag Facts, and probably other things
@@ -29,9 +27,6 @@ export const ApplicationViews = () => {
         )
     }
 
-    //add these when I finish the modules
-    //<Route path="play" element={ <Play /> } />
-    //<Route path="flagFacts" element={ <FlagFacts /> } />
 
 
     //from honey raes---dont think I need
