@@ -4,7 +4,7 @@ import { FactForm } from "../facts/FactForm"
 import { FactList } from "../facts/FactList"
 import { PlayContainer } from "../play/PlayContainer"
 import { Rules } from "../rules/Rules"
-//import all the components we made that need routes: Home, Play, Flag Facts, and probably other things
+import { Results } from "../play/Results"
     
     
 export const ApplicationViews = () => {
@@ -22,6 +22,7 @@ export const ApplicationViews = () => {
                     <Route path="facts" element={ <FactList /> } />
                     <Route path="fact/create" element={ <FactForm />} />
                     <Route path="play" element={ <PlayContainer />} />
+                    <Route path="play/results" element= { <Results />} />
                 </Route>
             </Routes>
         )

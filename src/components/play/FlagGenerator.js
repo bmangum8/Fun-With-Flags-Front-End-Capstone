@@ -1,7 +1,8 @@
 import { useState, useEffect } from "react"
 
 
-export const FlagGenerator = () => {
+export const FlagGenerator = ({ setterFlagFunction }) => {
+//pass the key of the object as a prop--object deconstruction
 
     //useState to set the state of flags. Expect it to be an array 
     const [flags, setFlags] = useState([])
@@ -36,6 +37,17 @@ export const FlagGenerator = () => {
     //flag is a key on the country object
 
     let randomFlagObj = getRandomObject(flags)   
+
+    //this useEffect observes when the state of flags changes. When the state changes, 
+    //the setterFlagFunction passed from the parent, sets the state of the flagShown state
+    //to the randomFlagObj that was randomly chosen
+    useEffect(
+        () => {
+            setterFlagFunction(randomFlagObj)
+        },
+        [flags]
+    )
+
     
     return (
         <>

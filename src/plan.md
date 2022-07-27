@@ -263,5 +263,20 @@ flagFacts: [
 
 
 10. Results.js --shows correct or incorrect, shows name of country and the flag
+*will need an array in the database named Results
+*objects will contain id, userId, countryId, correct? boolean
+
+-will need to post result of submit button to database
+-post fetch request
+-so need onClick in countriesDropDown.js
+-need to pass onClick result info from countriesDropDown as a prop to Results.
+-so Results will be a child component of countriesDropDown
+- route to results page
+
+-On results page: given user clicks on submit button
+-if userChoice === country.id then message: yay correct
+else message sad face not correct 
+
+-stretch goal: add fact about this flag button
 
 11. 
