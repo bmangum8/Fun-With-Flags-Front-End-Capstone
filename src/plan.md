@@ -279,4 +279,24 @@ else message sad face not correct
 
 -stretch goal: add fact about this flag button
 
+
+
+---Thoughts about Play and Results:
+a. when the user clicks submit: 
+        -Do I want a message to pop up and say correct or incorrect?-- if multiple tries
+        -Or do I want them to be rerouted to a new page that says correct or incorrect?
+        -I do want them to see the flag and the country name on the page they are rerouted to
+        -Will need a play again button that reroutes them to play page
+
+b. Do I want the user results saved to the api database? Currently I have the results sent via post fetch request
+        -I think I do not want to save results
+        -I also do not want to do points as a stretch goal anymore
+        (bc i think to do points, I would need the results to be saved)
+
+c. Questions:
+        (FlagGenerator, CountriesDropDown, and Results are child components of PlayContainer)
+        (Results is a child component of PlayContainer bc it needs the state of FlagGenerator and CountriesDropDown)
+        - If Results is a child component of PlayContainer, does it have to be envoked within PlayContainer?
+        - I need it to be envoked later, not when PlayContainer is envoked
+
 11. 

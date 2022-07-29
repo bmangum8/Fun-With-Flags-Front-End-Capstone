@@ -7,9 +7,11 @@ import { useNavigate } from "react-router-dom"
 
 
 
-export const CountriesDropDown = ({ setterFunction, flagShownState }) => {
+export const CountriesDropDown = ({ setUserChoiceFunction, flagShownState, userChoiceState, setterToggleFunction }) => {
     const [countries, setCountries] = useState([])
     
+    //result is the country.id (an integer) that the user chooses from the drop down menu
+    const [result, setResult] =useState(0)
 
     useEffect(
         () => {
@@ -26,33 +28,31 @@ export const CountriesDropDown = ({ setterFunction, flagShownState }) => {
     const localFlagUser = localStorage.getItem("flag_user")
     const flagUserObject = JSON.parse(localFlagUser)
     
-    //set default state
-    const [result, setResult] =useState({
-      actualCountryId: "",
-      userChoiceCountryId: "",
-      correct: false
-    })
-    
-    const navigate = useNavigate()
 
 
-      //setterFunction sets the userChoice
-    useEffect(
+//we use setUserChoiceFunction (passed from the parent component as a prop) 
+//to set the userChoiceState to the result (the country.id that the user chose)
+useEffect(
       () => {
-          setterFunction(result)
+          setUserChoiceFunction(result)
       },
       [result]
   )
     
+    const navigate = useNavigate()
+
     const handleSubmitButton = (event) => {
         event.preventDefault()   
-    
+
+//flagShownState is an object. so we need to use .id 
+//userChoiceState is the id from the country drop down menu
         const resultToSendToAPI = {
           userId: flagUserObject.id,
           actualCountryId: flagShownState.id,
-          userChoiceCountryId: result.id,
-          correct: result.correct
+          userChoiceCountryId: parseInt(userChoiceState),
+          correct: parseInt(userChoiceState) === flagShownState.id
         }
+
               
         //fetch() to post object to API 
       return fetch(`http://localhost:8088/results`, {
@@ -62,24 +62,25 @@ export const CountriesDropDown = ({ setterFunction, flagShownState }) => {
         },
       //we cant send a raw JS object, we have to stringify it
         body: JSON.stringify(resultToSendToAPI)
-    })
+      })
+      
+      .then(setterToggleFunction(true))
+        
+        // //navigate user to results page
+        // .then(response => response.json())
+        // .then(() => {
+        //   navigate("/play/results")
+        // })
 
-      // .then(() => {
-      //   setResult(resultToSendToAPI)
-      // })
-
-  
-
-    //navigate user to results page
-        .then(response => response.json())
-        .then(() => {
-        navigate("/play/results")
-    })
-    }
-
+        
+        
+      }
+    
+//when the user changes the country in the drop down, setResult sets the value of result to the country.id---an integer
 return (
 <>
-  <select>
+  <select onChange={(event) => setResult(event.target.value)}>
+    <option value={0}>Select</option>
     {countries.map(country => (
       <option key={country.id} value={country.id}>
         {country.name}
@@ -87,7 +88,7 @@ return (
     ))}
   </select>
   <button 
-      onClick={(clickEvent) => handleSubmitButton(clickEvent)}
+      onClick={(clickEvent) => handleSubmitButton(clickEvent)} 
       className="btn btn-primary">
         Submit
   </button>
@@ -96,4 +97,9 @@ return (
 )
 }
 
+
+
 //<input type="submit" value="Submit" /> using <button> instead
+
+//this is the option if we want 2 functions to execute on click:
+//onClick={(clickEvent) => {handleSubmitButton(clickEvent); Results(clickEvent)}} 
