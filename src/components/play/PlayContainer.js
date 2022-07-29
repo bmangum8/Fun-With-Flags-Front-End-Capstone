@@ -7,22 +7,28 @@
 import { CountriesDropDown } from "./CountriesDropDown"
 import { FlagGenerator } from "./FlagGenerator"
 import { useState } from "react"
-import { Results } from "./Results"
+import { ResultsPage } from "./ResultsPage"
+
+
 
 export const PlayContainer = () => {
-    const [userChoice, setUserChoice] = useState({})
+    const [userChoice, setUserChoice] = useState(0)
     const [flagShown, setFlagShown] = useState({})
+    const [toggle, setToggle] = useState(false)
     
     return (
-    <>
-            <FlagGenerator setterFlagFunction={setFlagShown} />
-            <CountriesDropDown setterFunction={setUserChoice} flagShownState={flagShown}/>
-            <div>
-                <Results userChoiceState={userChoice} flagShownState={flagShown} />
-            </div>
-    </>
+        <>
+        <FlagGenerator setterFlagFunction={setFlagShown} />
+        {
+            toggle ? <ResultsPage setterFlagFunction={setFlagShown} userChoiceState={userChoice} flagShownState={flagShown} />
+            : <CountriesDropDown setUserChoiceFunction={setUserChoice} flagShownState={flagShown} userChoiceState={userChoice} setterToggleFunction={setToggle} />
+            
+        }
+       </> 
     )
 }
+
+
 
 //need to do results.js
 

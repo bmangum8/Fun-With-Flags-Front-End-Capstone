@@ -4,7 +4,7 @@ import { FactForm } from "../facts/FactForm"
 import { FactList } from "../facts/FactList"
 import { PlayContainer } from "../play/PlayContainer"
 import { Rules } from "../rules/Rules"
-import { Results } from "../play/Results"
+import { ResultsPage } from "../play/ResultsPage"
     
     
 export const ApplicationViews = () => {
@@ -22,7 +22,6 @@ export const ApplicationViews = () => {
                     <Route path="facts" element={ <FactList /> } />
                     <Route path="fact/create" element={ <FactForm />} />
                     <Route path="play" element={ <PlayContainer />} />
-                    <Route path="play/results" element= { <Results />} />
                 </Route>
             </Routes>
         )

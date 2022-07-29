@@ -6,6 +6,7 @@ export const FlagGenerator = ({ setterFlagFunction }) => {
 
     //useState to set the state of flags. Expect it to be an array 
     const [flags, setFlags] = useState([])
+    const [currentFlagObject, setCurrentFlagObject] = useState({})
 
     //getRandomObject function: takes an array as a parameter, chooses a random object in the array, returns the randomObject
     const getRandomObject = (array) => {
@@ -30,22 +31,27 @@ export const FlagGenerator = ({ setterFlagFunction }) => {
     //at this point, the value of flags is the array of countries
 
 
- 
-    //pass the state of flags as a parameter (which is an array of countries)
-    //the return of getRandomObject is a random obj from the countries array
-    //set the return of getRandonObject to a variable
-    //flag is a key on the country object
 
-    let randomFlagObj = getRandomObject(flags)   
 
-    //this useEffect observes when the state of flags changes. When the state changes, 
-    //the setterFlagFunction passed from the parent, sets the state of the flagShown state
-    //to the randomFlagObj that was randomly chosen
+    // this useEffect observes when the state of flags changes. When the state changes, 
+    // the setCurrentFlagObject sets the state of currentFlagObject to the return of getRandomObject
     useEffect(
         () => {
-            setterFlagFunction(randomFlagObj)
+            setCurrentFlagObject(getRandomObject(flags))
         },
         [flags]
+    )
+
+
+    //use effect observes currentFlagObject
+    //so should initialize after a random flag has been rendered
+    //setterFlagFunction sets flagShownState (from parent component) to the value of the currentFlagObject
+    //At this point- the value of flagShownState should be an object
+    useEffect(
+        () => {
+            setterFlagFunction(currentFlagObject)
+        },
+        [currentFlagObject]
     )
 
     
@@ -54,7 +60,7 @@ export const FlagGenerator = ({ setterFlagFunction }) => {
            <h2>Guess this Flag</h2>
                    
             <section className="flag">
-                    <img src={randomFlagObj?.flag} alt="flagPicture" /> 
+                    <img src={currentFlagObject?.flag} alt="flagPicture" /> 
            </section>
         </>
        )
