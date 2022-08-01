@@ -8,14 +8,15 @@ export const NavBar = () => {
 
     return (
         <ul className="navbar">
+
             <li className="navbar_item active">
-                <Link className="navbar_link" to="/facts">Facts</Link>
+                <Link className="navbar_link" to="/rules">Rules</Link>
+            </li>
+            <li className="navbar_item active">
+                <Link className="navbar_link" to="/favorites">My Favorites</Link>
             </li>
             <li className="navbar_item active">
                 <Link className="navbar_link" to="/play">Play</Link>
-            </li>
-            <li className="navbar_item active">
-                <Link className="navbar_link" to="/rules">Rules</Link>
             </li>
             <li className="navbar__item navbar__logout">
                 <Link className="navbar__link" to="" onClick={() => {
@@ -28,5 +29,4 @@ export const NavBar = () => {
 }
 
 
-//continue this for each item in the nav bar: Home, Play, Flag Facts, (Stretch Goal: My Scores)
-//look at honey raes NavBar.js to get the logout button that needs to be in the return also
+//continue this for each item in the nav bar: (Stretch Goal: My Scores)

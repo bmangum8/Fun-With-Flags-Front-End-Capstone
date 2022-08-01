@@ -64,15 +64,7 @@ useEffect(
         body: JSON.stringify(resultToSendToAPI)
       })
       
-      .then(setterToggleFunction(true))
-        
-        // //navigate user to results page
-        // .then(response => response.json())
-        // .then(() => {
-        //   navigate("/play/results")
-        // })
-
-        
+      .then(setterToggleFunction(true)) 
         
       }
     

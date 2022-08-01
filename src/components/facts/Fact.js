@@ -13,14 +13,18 @@ export const Fact = ({ userFactObject, getAllFacts }) => {
                 })
     } 
 
+
     
     return <section className="fact" key={`fact--${userFactObject.id}`}>
-        <header>
-            {userFactObject.description}
-        </header>
         <div>
-            More information? {userFactObject.needMoreInfo ? "Yes" : "No"}
+            <img src={userFactObject.countryFlag} alt="flagPicture" />,
         </div>
+        <div>
+            {userFactObject.description}
+        </div>
+        {/* <div>
+            More information? {userFactObject.needMoreInfo ? "Yes" : "No"}
+        </div> */}
         <div className="fact">
             <button onClick={()=>deleteButton(userFactObject.id)}>Delete</button>
         </div>

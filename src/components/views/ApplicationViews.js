@@ -1,26 +1,30 @@
 //ApplicationViews.js- holds routes
-import { Outlet, Route, Routes } from "react-router-dom"
+import { Outlet, Route, Routes, useNavigate } from "react-router-dom"
 import { FactForm } from "../facts/FactForm"
 import { FactList } from "../facts/FactList"
 import { PlayContainer } from "../play/PlayContainer"
 import { Rules } from "../rules/Rules"
-import { ResultsPage } from "../play/ResultsPage"
+
     
     
 export const ApplicationViews = () => {
+    const navigate = useNavigate()
         return (
             <Routes>
                 <Route path="/" element={
                     <>
                         <h1 className="title--main">Fun With Flags</h1>
                         <div>A Vexillology Quiz App</div>
-
+                        <button onClick={() => navigate("/rules")}>Rules</button>
+                        <button onClick={() => navigate("/play")}>Play Now</button>
+                        <button onClick={() => navigate("/favorites")}>My Favorites</button>
                         <Outlet />
                     </>
                 }>
+                    
                     <Route path="rules" element={ <Rules /> } />
-                    <Route path="facts" element={ <FactList /> } />
-                    <Route path="fact/create" element={ <FactForm />} />
+                    <Route path="favorites" element={ <FactList /> } />
+                    <Route path="favorite/create" element={ <FactForm />} />
                     <Route path="play" element={ <PlayContainer />} />
                 </Route>
             </Routes>

@@ -35,12 +35,18 @@ export const FactList = () => {
         [facts]
     )
 
+       const HandlePlayAgainButton = (event) => {
+        event.preventDefault()   
+        navigate("/play")
+        }
+
+
     //.map converts objects into the HTML representation of the object
     return  <>
 
-        <button onClick={() => navigate("/fact/create")}>Add Flag Fact</button>
+        <button onClick={() => navigate("/fact/create")}>Add Flag To Favorites</button>
 
-        <h2>List of Facts</h2>
+        <h2>My Favorites</h2>
 
         <article className="facts">
             {
@@ -51,11 +57,15 @@ export const FactList = () => {
             }
 
         </article>
+        <button 
+            onClick={(clickEvent) => HandlePlayAgainButton(clickEvent)}
+            className="btn btn-primary">
+                Play Again
+        </button>
     
     </>
     
 }
-//I did not use curly brackets in the .map bc it is implicit return
 //userFactObject creates a prop that I can pass to other functions
 //I am envoking the Fact component here
-//as ,map iterates, it will create a new fact component. and passes props to child 
+//as .map iterates, it will create a new fact component. and passes props to child 

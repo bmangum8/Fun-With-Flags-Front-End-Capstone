@@ -1,4 +1,4 @@
-import { useState } from "react"
+import { useState, useEffect } from "react"
 import { useNavigate } from "react-router-dom"
 
 
@@ -16,27 +16,42 @@ navigate user back to fact list
 export const FactForm = () => {
     const localFlagUser = localStorage.getItem("flag_user")
     const flagUserObject = JSON.parse(localFlagUser)
+    
+    const [countries, setCountries] = useState([])
+    const navigate = useNavigate()
    
     //add default properties to initial state object
     const [fact, update] =useState({
+        // countryId: 0,
+        countryFlag: "",
         description: "",
-        needMoreInfo: false
+        favorite: true
     })
 
-    const navigate = useNavigate()
+    //observe initial state of countries and set countries to array from API
+    useEffect(
+        () => {
+            fetch(`http://localhost:8088/countries`)
+            .then(response => response.json())
+            .then((countriesArray) => {
+                setCountries(countriesArray)
+            })
+        },
+    []
+    )
     
+
 
     //send the new object to the facts array (would be API post request)
     const handleSaveButtonClick = (event) => {
         event.preventDefault()   
-    //console.log("you clicked the button")--works
     
-
     //create object to be saved to API
     const factToSendToAPI = {
         userId: flagUserObject.id,
+        countryFlag: fact.countryFlag,
         description: fact.description,
-        needMoreInfo: fact.needMoreInfo
+        favorite: true
     }
 
     //fetch() to post object to API
@@ -52,22 +67,44 @@ export const FactForm = () => {
     //navigate user back to fact list
     .then(response => response.json())
     .then(() => {
-        //navigate the user back to /factForm
-        navigate("/Facts")
+        //navigate the user back to /favorites
+        navigate("/favorites")
     })
 }
 
+
     return (
         <form className="factForm">
-        <h2 className="factForm__title">New Flag Fact</h2>
+        <h2 className="factForm__title">New Favorite Flag</h2>
+        <fieldset>
+
+        </fieldset>
+        <div className="form-group">
+            <select 
+                onChange={
+                    (event) => {
+                        const copy = {...fact}
+                        copy.countryFlag = event.target.value
+                        update(copy)
+                    }
+                    }>
+                <option value={0}>Select Flag</option>
+                    {countries.map(country => (
+                <option key={country.flag} value={country.flag}>
+                        {country.name} 
+                </option>
+            ))}
+            </select>
+            </div>           
+            
         <fieldset>
             <div className="form-group">
-                <label htmlFor="description">Description:</label>
+                <label htmlFor="notes">Notes:</label>
                 <input
                     required autoFocus
                     type="text"
                     className="form-control"
-                    placeholder="Type fact here"
+                    placeholder="Type notes here"
                     value={fact.description}
                     onChange={
                         (event) => {
@@ -81,9 +118,9 @@ export const FactForm = () => {
                     } />
             </div>
         </fieldset>
-        <fieldset>
+        {/* <fieldset>
             <div className="form-group">
-                <label htmlFor="name">Do I want to look up more information about this flag?:</label>
+                <label htmlFor="name">Favorites</label>
                 <input type="checkbox"
                     value={fact.needMoreInfo}
                     onChange={
@@ -97,12 +134,13 @@ export const FactForm = () => {
                         }
                     } />
             </div>
-        </fieldset>
+        </fieldset> */}
         <button 
             onClick={(clickEvent) => handleSaveButtonClick(clickEvent)}
             className="btn btn-primary">
-            Submit Flag Fact
+            Add Flag to Favorites
         </button>
     </form>
 )
 }
+

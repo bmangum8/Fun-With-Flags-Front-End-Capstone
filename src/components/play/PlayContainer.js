@@ -6,8 +6,9 @@
 
 import { CountriesDropDown } from "./CountriesDropDown"
 import { FlagGenerator } from "./FlagGenerator"
-import { useState } from "react"
+import { useEffect, useState } from "react"
 import { ResultsPage } from "./ResultsPage"
+import { Hints } from "../hints/Hints"
 
 
 
@@ -15,12 +16,32 @@ export const PlayContainer = () => {
     const [userChoice, setUserChoice] = useState(0)
     const [flagShown, setFlagShown] = useState({})
     const [toggle, setToggle] = useState(false)
+    const [flagIndex, setFlagIndex] = useState(0)
+
+    const arrayOfFlags = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19]
+
+    useEffect(
+        () => {
+            const randomFlag = arrayOfFlags[Math.floor(Math.random() * arrayOfFlags.length)];
+            setFlagIndex(randomFlag)
+
+        },
+        []
+    )
+
+    const changeFlagDisplay = () => {
+        const randomFlag = arrayOfFlags[Math.floor(Math.random() * arrayOfFlags.length)];
+        setFlagIndex(randomFlag)
+        setToggle(false)
+    }
     
+
     return (
         <>
-        <FlagGenerator setterFlagFunction={setFlagShown} />
+        <Hints flagShownState={flagShown} />
+        <FlagGenerator setterFlagFunction={setFlagShown} flagIndex={flagIndex} />
         {
-            toggle ? <ResultsPage setterFlagFunction={setFlagShown} userChoiceState={userChoice} flagShownState={flagShown} />
+            toggle ? <ResultsPage changeFlagDisplay={changeFlagDisplay} setterFlagFunction={setFlagShown} userChoiceState={userChoice} flagShownState={flagShown} />
             : <CountriesDropDown setUserChoiceFunction={setUserChoice} flagShownState={flagShown} userChoiceState={userChoice} setterToggleFunction={setToggle} />
             
         }
