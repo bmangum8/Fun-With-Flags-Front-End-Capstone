@@ -9,6 +9,7 @@ import { FlagGenerator } from "./FlagGenerator"
 import { useEffect, useState } from "react"
 import { ResultsPage } from "./ResultsPage"
 import { Hints } from "../hints/Hints"
+import { Button, Container, Col, Row } from 'reactstrap';
 
 
 
@@ -37,15 +38,39 @@ export const PlayContainer = () => {
     
 
     return (
-        <>
-        <Hints flagShownState={flagShown} />
-        <FlagGenerator setterFlagFunction={setFlagShown} flagIndex={flagIndex} />
-        {
-            toggle ? <ResultsPage changeFlagDisplay={changeFlagDisplay} setterFlagFunction={setFlagShown} userChoiceState={userChoice} flagShownState={flagShown} />
-            : <CountriesDropDown setUserChoiceFunction={setUserChoice} flagShownState={flagShown} userChoiceState={userChoice} setterToggleFunction={setToggle} />
-            
-        }
-       </> 
+        <Container>
+            <Row>
+                <Col
+                  className="bg-light border"
+                  sm="4"
+                  xs="6"
+                >
+                    <FlagGenerator setterFlagFunction={setFlagShown} flagIndex={flagIndex} />
+                
+                </Col>
+                <Col
+                className="bg-light border"
+                sm={{
+                    offset: 4,
+                    size: 'auto'
+                }}
+                >
+                    <Hints flagShownState={flagShown} />
+                </Col>
+            </Row>
+            <Row>
+                <Col
+                  className="bg-light border"
+                  sm="4"
+                  xs="6"
+                  >
+                        {
+                        toggle ? <ResultsPage changeFlagDisplay={changeFlagDisplay} setterFlagFunction={setFlagShown} userChoiceState={userChoice} flagShownState={flagShown} />
+                        : <CountriesDropDown setUserChoiceFunction={setUserChoice} flagShownState={flagShown} userChoiceState={userChoice} setterToggleFunction={setToggle} />
+                        }
+                </Col>
+            </Row>
+        </Container>
     )
 }
 
@@ -71,3 +96,15 @@ export const PlayContainer = () => {
 
 //setterFunction and userChoiceState become keys on an object. 
 //setUserChoice function and userChoice will be the values on the key/value pair
+
+
+{/* <FlagGenerator setterFlagFunction={setFlagShown} flagIndex={flagIndex} />
+{
+    toggle ? <ResultsPage changeFlagDisplay={changeFlagDisplay} setterFlagFunction={setFlagShown} userChoiceState={userChoice} flagShownState={flagShown} />
+    : <CountriesDropDown setUserChoiceFunction={setUserChoice} flagShownState={flagShown} userChoiceState={userChoice} setterToggleFunction={setToggle} />
+    
+}
+<Hints flagShownState={flagShown} />
+</> 
+)
+} */}

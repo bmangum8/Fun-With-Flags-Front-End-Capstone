@@ -24,6 +24,7 @@ export const FactForm = () => {
     const [fact, update] =useState({
         // countryId: 0,
         countryFlag: "",
+        countryName: "",
         description: "",
         favorite: true
     })
@@ -50,6 +51,7 @@ export const FactForm = () => {
     const factToSendToAPI = {
         userId: flagUserObject.id,
         countryFlag: fact.countryFlag,
+        countryName: fact.countryName,
         description: fact.description,
         favorite: true
     }
@@ -78,7 +80,6 @@ export const FactForm = () => {
         <h2 className="factForm__title">New Favorite Flag</h2>
         <fieldset>
 
-        </fieldset>
         <div className="form-group">
             <select 
                 onChange={
@@ -87,16 +88,38 @@ export const FactForm = () => {
                         copy.countryFlag = event.target.value
                         update(copy)
                     }
-                    }>
+                }>
                 <option value={0}>Select Flag</option>
                     {countries.map(country => (
-                <option key={country.flag} value={country.flag}>
+                        <option key={country.flag} value={country.flag}>
                         {country.name} 
                 </option>
             ))}
             </select>
             </div>           
             
+        </fieldset>
+        <fieldset>
+        <div className="form-group">
+            <label htmlFor="countryName">Country Name:</label>
+            <input
+                required autoFocus
+                type="text"
+                className="form-control"
+                placeholder="Type country name here"
+                value={fact.countryName}
+                onChange={
+                    (event) => {
+                        //makes a copy of the fact using spread operator
+                        const copy = {...fact}
+                        //sets the countryName property of the copy to whatever is entered in the countryName box. which is the value of the target event
+                        copy.countryName = event.target.value
+                       // updatefact sets the value of fact to the value of copy
+                        update(copy)
+                    }
+                } />
+        </div>
+    </fieldset>
         <fieldset>
             <div className="form-group">
                 <label htmlFor="notes">Notes:</label>
@@ -118,23 +141,23 @@ export const FactForm = () => {
                     } />
             </div>
         </fieldset>
-        {/* <fieldset>
+        <fieldset>
             <div className="form-group">
                 <label htmlFor="name">Favorites</label>
                 <input type="checkbox"
-                    value={fact.needMoreInfo}
+                    value={fact.favorite}
                     onChange={
                         (event) => {
                             const copy = {...fact}
                             //cant use .value with a check box. have to use .checked
                             // is a boolean value of true or false
-                            copy.needMoreInfo = event.target.checked
+                            copy.favorite = event.target.checked
                             //update sets the value of fact to the value of copy
                             update(copy)
                         }
                     } />
             </div>
-        </fieldset> */}
+        </fieldset>
         <button 
             onClick={(clickEvent) => handleSaveButtonClick(clickEvent)}
             className="btn btn-primary">

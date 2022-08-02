@@ -12,6 +12,7 @@ export const ResultsPage = ({ flagShownState, userChoiceState, changeFlagDisplay
     
     const [favorite, setFavorite] =useState({
         countryFlag: "",
+        countryName: "",
         favorite: true
     })
 
@@ -46,6 +47,7 @@ export const ResultsPage = ({ flagShownState, userChoiceState, changeFlagDisplay
         const favoritesToAPI = {
             userId: flagUserObject.id,
             countryFlag: flagShownState.flag,
+            countryName: flagShownState.name,
             favorite: favorite.favorite
            
         }
@@ -75,33 +77,7 @@ return (
             className="btn btn-primary">
                 Add Flag to Favorites
     </button>
-
-    {/* <fieldset>
-    <div className="form-group">
-        <label htmlFor="name">Add Flag to Favorites</label>
-        <input type="checkbox"
-            value={favorite.countryFlag}
-            onChange={
-                (event) => {
-                    const copy = {...favorite}
-                    //cant use .value with a check box. have to use .checked
-                    // is a boolean value of true or false
-                    copy.favorite = event.target.checked
-                    setFavorite(copy)
-                }
-            } />
-    </div>
-</fieldset> */}
-</>
+    </>
 )
 }
 
-/*
-<section className="flag">
-//         <img src={flagShownState?.flag} alt="flagPicture" /> 
-//     </section>
-//     <h3>{flagShownState?.capital}</h3>
-//     <h3>{flagShownState?.subregion}</h3>
-//     <h3>{flagShownState?.language}</h3>
-*/
-   

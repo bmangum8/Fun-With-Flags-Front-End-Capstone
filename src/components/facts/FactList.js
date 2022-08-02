@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react"
 import { useNavigate, Link } from "react-router-dom"
 import { Fact } from "./Fact"
+import { Row } from 'reactstrap'
 
 export const FactList = () => {
     const [facts, setFacts] = useState([])
@@ -44,20 +45,20 @@ export const FactList = () => {
     //.map converts objects into the HTML representation of the object
     return  <>
 
-        <button onClick={() => navigate("/fact/create")}>Add Flag To Favorites</button>
+        {/* <button onClick={() => navigate("/favorites/create")}>Add A Flag To Favorites</button> */}
 
         <h2>My Favorites</h2>
-
-        <article className="facts">
+        <Row sm="6">
             {
                 filteredFacts.map(
                     (fact) => <Fact userFactObject={fact} getAllFacts={getAllFacts}/>
+                    // <FactEdit userFactObject={fact}
                 )
 
             }
 
-        </article>
-        <button 
+        </Row>
+        <button
             onClick={(clickEvent) => HandlePlayAgainButton(clickEvent)}
             className="btn btn-primary">
                 Play Again

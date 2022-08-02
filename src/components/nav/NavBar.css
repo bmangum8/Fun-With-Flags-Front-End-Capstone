@@ -2,13 +2,23 @@
     display: flex;
     flex-wrap: nowrap;
     justify-content: left;
+    list-style-type: none;
+    background-color: #04AA6D;
+    
 }
 
 .navbar__item {
     flex-basis: 20%;
     list-style-type: none;
+    margin: 10px;
+
 }
 
 .navbar__logout {
     margin-left: auto;
 }
+
+.h1 {
+    text-align: center;
+}
+

@@ -3,6 +3,7 @@ import "./NavBar.css"
 
 
 
+
 export const NavBar = () => {
     const navigate = useNavigate()
 
@@ -10,13 +11,13 @@ export const NavBar = () => {
         <ul className="navbar">
 
             <li className="navbar_item active">
-                <Link className="navbar_link" to="/rules">Rules</Link>
+                <Link className="navbar_link"to="/rules">Rules</Link>
             </li>
             <li className="navbar_item active">
-                <Link className="navbar_link" to="/favorites">My Favorites</Link>
+                <Link className="navbar_link"to="/favorites">My Favorites</Link>
             </li>
             <li className="navbar_item active">
-                <Link className="navbar_link" to="/play">Play</Link>
+                <Link className="navbar_link"to="/play">Play</Link>
             </li>
             <li className="navbar__item navbar__logout">
                 <Link className="navbar__link" to="" onClick={() => {
