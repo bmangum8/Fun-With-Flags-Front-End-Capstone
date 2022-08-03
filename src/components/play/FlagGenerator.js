@@ -1,7 +1,8 @@
 import { useState, useEffect } from "react"
+import "./Play.css"
 
 
-export const FlagGenerator = ({ setterFlagFunction }) => {
+export const FlagGenerator = ({ setterFlagFunction, flagIndex }) => {
 //pass the key of the object as a prop--object deconstruction
 
     //useState to set the state of flags. Expect it to be an array 
@@ -9,10 +10,10 @@ export const FlagGenerator = ({ setterFlagFunction }) => {
     const [currentFlagObject, setCurrentFlagObject] = useState({})
 
     //getRandomObject function: takes an array as a parameter, chooses a random object in the array, returns the randomObject
-    const getRandomObject = (array) => {
-        const randomObject = array[Math.floor(Math.random() * array.length)];
-        return randomObject
-    }
+    // const getRandomObject = (array) => {
+    //     const randomObject = array[Math.floor(Math.random() * array.length)];
+    //     return randomObject
+    // }
 
     //observe the inital state with []
     //fetch request from api to the countries array
@@ -25,7 +26,7 @@ export const FlagGenerator = ({ setterFlagFunction }) => {
                 setFlags(countryArray)
             })
     },
-    [] 
+    [flagIndex] 
     )
     //so now have the array of countries from database
     //at this point, the value of flags is the array of countries
@@ -37,7 +38,7 @@ export const FlagGenerator = ({ setterFlagFunction }) => {
     // the setCurrentFlagObject sets the state of currentFlagObject to the return of getRandomObject
     useEffect(
         () => {
-            setCurrentFlagObject(getRandomObject(flags))
+            setCurrentFlagObject(flags[flagIndex])
         },
         [flags]
     )
@@ -57,10 +58,10 @@ export const FlagGenerator = ({ setterFlagFunction }) => {
     
     return (
         <>
-           <h2>Guess this Flag</h2>
+           <h2 className="h3">Guess this Flag</h2>
                    
-            <section className="flag">
-                    <img src={currentFlagObject?.flag} alt="flagPicture" /> 
+            <section className="flag_container">
+                    <img className="picture" src={currentFlagObject?.flag} alt="flagPicture" /> 
            </section>
         </>
        )

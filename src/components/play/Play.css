@@ -1,0 +1,66 @@
+.flag {
+    padding: 0.7rem;
+    margin: 0.5rem 0;
+    max-width: 10px;
+    border: 2px dotted black;
+}
+
+.h3 {
+    padding: 1rem;
+    margin: .5rem 0;
+    text-align: center;
+    width: 50%;
+
+}
+
+.button {
+    padding: 1rem;
+    margin: 2rem 0rem;
+    text-align: center;
+}
+
+.h2 {
+    padding: 1rem;
+    margin: .5rem 0;
+    text-align: center;
+
+}
+
+.h1 {
+    padding: 1rem;
+    margin: .5rem 0;
+    text-align: center;
+
+}
+
+.picture {
+    border: 1px dotted darkblue;
+    /* height: 500px; */
+    width: 700px
+}
+
+.hints {
+    text-align: center;
+    margin: 2rem 0;
+    width: 4cm;
+}
+
+
+.rule {
+    margin: 3rem 0;
+}
+
+.logo {
+    width: 7cm;
+}
+
+.dropdown {
+    margin: 3rem 0;
+}
+
+.fact {
+    margin: 2rem 0;
+}
+
+
+

@@ -1,13 +1,14 @@
 // Play.js is parent component of FlagGenerator and CountriesDropDown and Results
 //will maintain the state---the user choice and the actual random flag shown
-//
-//this could be used to set the results state and share results state with sibling components
-//video TicketSearch at about 7 mins--watch for help when ready to look more at state
+//this component is used to set the results state and share results state with sibling components
 
 import { CountriesDropDown } from "./CountriesDropDown"
 import { FlagGenerator } from "./FlagGenerator"
-import { useState } from "react"
+import { useEffect, useState } from "react"
 import { ResultsPage } from "./ResultsPage"
+import { Hints } from "../hints/Hints"
+import { Container, Col, Row } from 'reactstrap';
+import "./Play.css"
 
 
 
@@ -15,38 +16,56 @@ export const PlayContainer = () => {
     const [userChoice, setUserChoice] = useState(0)
     const [flagShown, setFlagShown] = useState({})
     const [toggle, setToggle] = useState(false)
+    const [flagIndex, setFlagIndex] = useState(0)
+
+    const arrayOfFlags = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19]
+
+    useEffect(
+        () => {
+            const randomFlag = arrayOfFlags[Math.floor(Math.random() * arrayOfFlags.length)];
+            setFlagIndex(randomFlag)
+
+        },
+        []
+    )
+
+    const changeFlagDisplay = () => {
+        const randomFlag = arrayOfFlags[Math.floor(Math.random() * arrayOfFlags.length)];
+        setFlagIndex(randomFlag)
+        setToggle(false)
+    }
     
+
     return (
-        <>
-        <FlagGenerator setterFlagFunction={setFlagShown} />
-        {
-            toggle ? <ResultsPage setterFlagFunction={setFlagShown} userChoiceState={userChoice} flagShownState={flagShown} />
-            : <CountriesDropDown setUserChoiceFunction={setUserChoice} flagShownState={flagShown} userChoiceState={userChoice} setterToggleFunction={setToggle} />
-            
-        }
-       </> 
+        <Container>
+            <Row xs="3">
+                <Col xs="3"
+                  className="border"
+                  >
+                        {
+                        toggle ? <ResultsPage changeFlagDisplay={changeFlagDisplay} setterFlagFunction={setFlagShown} userChoiceState={userChoice} flagShownState={flagShown} />
+                        : <CountriesDropDown setUserChoiceFunction={setUserChoice} flagShownState={flagShown} userChoiceState={userChoice} setterToggleFunction={setToggle} />
+                        }
+                </Col>
+                <Col xs="7"
+                  className="border"
+                >
+                    <FlagGenerator setterFlagFunction={setFlagShown} flagIndex={flagIndex} />
+                
+                </Col>
+                <Col xs="2"
+                    className="border"
+                >
+                    <Hints flagShownState={flagShown} />
+                </Col>
+            </Row>
+        </Container>
     )
 }
 
 
-
-//need to do results.js
-
 //FlagGenerator and CountriesDropDown and Results act independently of each other,
 //but I need them to share state, so I use props
-
-//CountriesDropDown contains the state of userChoice--needs prop: setUserChoice
-//countriesDropDown needs randomFlagObject from flagGenerator. so needs: state of flagShown
-//*FlagGenerator contains the state of flagShown---needs prop: setFlagShown
-//Results contains the function that compares the flagShown and the userChoice: so needs both 
-
-//so when state changes, need useEffect to observe state
-
-//parent component PlayContainer needs to pass a reference to the setUserChoice function
-//down to FlagGenerator
-
-//Results needs to know the state of the userChoice
-
 
 //setterFunction and userChoiceState become keys on an object. 
 //setUserChoice function and userChoice will be the values on the key/value pair

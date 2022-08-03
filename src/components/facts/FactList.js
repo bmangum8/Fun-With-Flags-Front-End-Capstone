@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react"
 import { useNavigate, Link } from "react-router-dom"
 import { Fact } from "./Fact"
+import { Row, Button } from 'reactstrap'
 
 export const FactList = () => {
     const [facts, setFacts] = useState([])
@@ -35,27 +36,36 @@ export const FactList = () => {
         [facts]
     )
 
+       const HandlePlayAgainButton = (event) => {
+        event.preventDefault()   
+        navigate("/play")
+        }
+
+
     //.map converts objects into the HTML representation of the object
     return  <>
 
-        <button onClick={() => navigate("/fact/create")}>Add Flag Fact</button>
+        {/* <button onClick={() => navigate("/favorites/create")}>Add A Flag To Favorites</button> */}
 
-        <h2>List of Facts</h2>
-
-        <article className="facts">
+        <h2>My Favorites</h2>
+        <Row sm="6">
             {
                 filteredFacts.map(
                     (fact) => <Fact userFactObject={fact} getAllFacts={getAllFacts}/>
+                    // <FactEdit userFactObject={fact}
                 )
 
             }
 
-        </article>
+        </Row>
+        <Button size="lg" color="primary" className="button"
+            onClick={(clickEvent) => HandlePlayAgainButton(clickEvent)}>
+                Play
+        </Button>
     
     </>
     
 }
-//I did not use curly brackets in the .map bc it is implicit return
 //userFactObject creates a prop that I can pass to other functions
 //I am envoking the Fact component here
-//as ,map iterates, it will create a new fact component. and passes props to child 
+//as .map iterates, it will create a new fact component. and passes props to child 

@@ -1,4 +1,15 @@
 import { useEffect, useState } from "react"
+import { Link } from "react-router-dom"
+import "../play/Play.css"
+import {
+   Card, 
+   CardBody,
+   CardTitle,
+   CardHeader,
+   CardFooter,
+   CardSubtitle,
+   Button
+  } from 'reactstrap';
 
 
 export const Fact = ({ userFactObject, getAllFacts }) => {
@@ -13,20 +24,39 @@ export const Fact = ({ userFactObject, getAllFacts }) => {
                 })
     } 
 
-    
-    return <section className="fact" key={`fact--${userFactObject.id}`}>
-        <header>
-            {userFactObject.description}
-        </header>
-        <div>
-            More information? {userFactObject.needMoreInfo ? "Yes" : "No"}
-        </div>
-        <div className="fact">
-            <button onClick={()=>deleteButton(userFactObject.id)}>Delete</button>
-        </div>
-    </section>
+    return <Card 
+        style={{
+            width: '25rem'
+        }}
+        className="fact" key={`fact--${userFactObject.id}`}
+        >
+    <img
+        alt="flagPicture" 
+        src={userFactObject.countryFlag}
+    />
+    <CardBody>
+        <CardTitle tag="h5">
+            {userFactObject.countryName}
+        </CardTitle>
+  
+        <CardSubtitle
+            className="mb-2 text-muted"
+            tag="h6"
+        >
+            Notes: {userFactObject.description}
+        </CardSubtitle>
+        <Link to={`userFacts/${userFactObject.id}/edit`}>Edit Notes</Link>
+    </CardBody>
+    <CardFooter>
+        <Button onClick={()=>deleteButton(userFactObject.id)}>Delete</Button>
+    </CardFooter>
+    </Card>
     
 }
+    
+
+    
+
 
 
 //FactList is the parent of Fact. FactList passed userFactObject as a prob to Fact

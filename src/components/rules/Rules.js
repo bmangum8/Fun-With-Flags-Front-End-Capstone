@@ -1,12 +1,13 @@
 import { useNavigate } from "react-router-dom"
-
+import "../play/Play.css"
+import { Button } from "reactstrap"
 //renders the rules in JSX
 
 export const Rules = () => {
     const navigate = useNavigate()
     return (
       <>
-        <h2>Rules</h2>
+        <h2 className="rules">Rules</h2>
 
         <article className="rules">
                 <ol className="rule">
@@ -17,7 +18,8 @@ export const Rules = () => {
                 </ol>
         </article>
         
-        <button onClick={() => navigate("/play")}>Play Now</button>
+        <Button size="lg" color="primary"
+        onClick={() => navigate("/play")}>Play Now</Button>
     </>
     )
 }
