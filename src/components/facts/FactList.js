@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react"
 import { useNavigate, Link } from "react-router-dom"
 import { Fact } from "./Fact"
-import { Row } from 'reactstrap'
+import { Row, Button } from 'reactstrap'
 
 export const FactList = () => {
     const [facts, setFacts] = useState([])
@@ -58,11 +58,10 @@ export const FactList = () => {
             }
 
         </Row>
-        <button
-            onClick={(clickEvent) => HandlePlayAgainButton(clickEvent)}
-            className="btn btn-primary">
-                Play Again
-        </button>
+        <Button size="lg" color="primary" className="button"
+            onClick={(clickEvent) => HandlePlayAgainButton(clickEvent)}>
+                Play
+        </Button>
     
     </>
     

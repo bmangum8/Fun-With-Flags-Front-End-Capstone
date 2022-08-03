@@ -5,7 +5,6 @@ import { Register } from "./auth/Register"
 import { NavBar } from "./nav/NavBar"
 import "./Flags.css"
 import { Authorized } from "./views/Authorized"
-import { Button } from 'reactstrap'
 
 
 export const Flags = () => {

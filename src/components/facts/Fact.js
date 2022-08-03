@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react"
 import { Link } from "react-router-dom"
+import "../play/Play.css"
 import {
    Card, 
    CardBody,
@@ -44,7 +45,7 @@ export const Fact = ({ userFactObject, getAllFacts }) => {
         >
             Notes: {userFactObject.description}
         </CardSubtitle>
-        <Link to={`userFacts/edit`}>Edit Notes</Link>
+        <Link to={`userFacts/${userFactObject.id}/edit`}>Edit Notes</Link>
     </CardBody>
     <CardFooter>
         <Button onClick={()=>deleteButton(userFactObject.id)}>Delete</Button>

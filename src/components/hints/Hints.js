@@ -3,7 +3,8 @@
 //flagShownState.capital, subregion, language
 // on click, the hint would show
 
-import { Button, Row, Col } from "reactstrap"
+import { Button, Row, Container } from "reactstrap"
+import "../play/Play.css"
 
 export const Hints = ({ flagShownState }) => {
 
@@ -21,31 +22,32 @@ export const Hints = ({ flagShownState }) => {
     
     
     return (
-    <>
-        <h3>Hints</h3>
-        <Row xs="3">
-            <Col className="button">
-                <Button size="lg" color="primary"
+    <Container className="container">
+        <h3 className="hints">Hints</h3>
+            <p className="hints">Click the buttons below for hints</p>
+      
+            <Row className="hints">
+                <Button size="md" color="info"
                     onClick={(clickEvent) => displayCapital(clickEvent)}>
                         Capital
-                </Button>
+               </Button> 
                 {' '}
-            </Col>
-            <Col className="button">
-                <Button size="lg" color="primary"
+            </Row>
+            <Row className="hints"> 
+                <Button size="md" color="info"
                     onClick={(clickEvent) => displaySubregion(clickEvent)}>
                         Subregion
                 </Button>
                 {' '}
-            </Col>
-            <Col className="button">
-                <Button size="lg" color="primary"
+            </Row>
+            <Row className="hints">
+                <Button size="md" color="info"
                     onClick={(clickEvent) => displayLanguage(clickEvent)}>
                         Language
                 </Button>
-            </Col>
-        </Row>
-    </>
+            </Row>
+    
+    </Container> 
     )
 }
 

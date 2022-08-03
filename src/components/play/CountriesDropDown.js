@@ -4,6 +4,7 @@ import { useEffect, useState } from "react"
 import React from 'react';
 import { useNavigate } from "react-router-dom"
 //import countries.css
+import { Button } from "reactstrap"
 
 
 
@@ -39,7 +40,6 @@ useEffect(
       [result]
   )
     
-    const navigate = useNavigate()
 
     const handleSubmitButton = (event) => {
         event.preventDefault()   
@@ -71,7 +71,7 @@ useEffect(
 //when the user changes the country in the drop down, setResult sets the value of result to the country.id---an integer
 return (
 <>
-  <select onChange={(event) => setResult(event.target.value)}>
+  <select className="dropdown" onChange={(event) => setResult(event.target.value)}>
     <option value={0}>Select</option>
     {countries.map(country => (
       <option key={country.id} value={country.id}>
@@ -79,19 +79,12 @@ return (
       </option>
     ))}
   </select>
-  <button 
+  <Button size="md" color="primary"
       onClick={(clickEvent) => handleSubmitButton(clickEvent)} 
-      className="btn btn-primary">
+      >
         Submit
-  </button>
+  </Button>
 
 </>
 )
 }
-
-
-
-//<input type="submit" value="Submit" /> using <button> instead
-
-//this is the option if we want 2 functions to execute on click:
-//onClick={(clickEvent) => {handleSubmitButton(clickEvent); Results(clickEvent)}} 

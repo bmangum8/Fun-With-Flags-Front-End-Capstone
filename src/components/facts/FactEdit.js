@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react"
-import { useNavigate } from "react-router-dom"
+import { useNavigate, useParams } from "react-router-dom"
 
 export const FactEdit = () => {
     const [favorite, updateFavorite] = useState({
@@ -8,7 +8,8 @@ export const FactEdit = () => {
         description: "",
         favorite: true
     })
-    // const { userFactId } = useParams()
+    
+    const { userFactObjectId } = useParams()
     const navigate = useNavigate()
 
 
@@ -17,14 +18,13 @@ export const FactEdit = () => {
 
     //only want to pull userFact objects that have the same userId as the current local user
     useEffect(() => {
-        fetch(`http://localhost:8088/userFacts?userId=${flagUserObject.id}`)
+        fetch(`http://localhost:8088/userFacts/${userFactObjectId}`)
     
             .then(response => response.json())
             .then((data) => {
-                const userObject = data[0]
-                updateFavorite(userObject)
+                updateFavorite(data)
             })
-    }, [])
+    }, [userFactObjectId])
 
     const handleSaveButtonClick = (event) => {
         event.preventDefault()

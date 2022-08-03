@@ -1,5 +1,6 @@
 import { useNavigate } from "react-router-dom"
-import { useState, useEffect } from "react"
+import { useState } from "react"
+import { Button } from "reactstrap"
 
 
 //flagShownState and userChoiceState are props passed from parent component
@@ -20,20 +21,23 @@ export const ResultsPage = ({ flagShownState, userChoiceState, changeFlagDisplay
     const ResultsMessage = () => {
        if (parseInt(userChoiceState) === flagShownState.id) {
            return <>
-                <h2>Yay! You are correct!</h2>
-                <h3>Here is some info about {flagShownState.name}. </h3>
-                <p>The capital is {flagShownState.capital}. 
-                The people speak {flagShownState.language}. 
-                It is located in {flagShownState.subregion}</p>
+                <h2 className="h2">Yay! You are correct!</h2>
+                <ul>Here is some info about {flagShownState.name}: 
+                <li>The capital is {flagShownState.capital}. </li>
+                <li>The people speak {flagShownState.language}.</li>
+                <li>It is located in {flagShownState.subregion}</li>
+                </ul>
            </>
            } else {
                return <>
-                    <h2>Sorry, your answer was not correct.</h2>
+                    <h2 className="h2">Sorry, your answer was not correct.</h2>
                     <h3>The answer is {flagShownState.name}.</h3>
-                    <p>Here is some info about {flagShownState.name}. 
-                    The capital is {flagShownState.capital}. 
-                    The people speak {flagShownState.language}. 
-                    It is located in {flagShownState.subregion}.</p>
+                    <ul>
+                        Here is some info about {flagShownState.name}: 
+                    <li>The capital is {flagShownState.capital}.</li>
+                    <li>The people speak {flagShownState.language}.</li>
+                    <li>It is located in {flagShownState.subregion}.</li>
+                    </ul>
                 </> 
        }
     }
@@ -61,22 +65,21 @@ export const ResultsPage = ({ flagShownState, userChoiceState, changeFlagDisplay
         //we cant send a raw JS object, we have to stringify it
         body: JSON.stringify(favoritesToAPI)
     })
-    // confirmFavorite()
     }
 
 return (
     <>
     <ResultsMessage />
-    <button 
-        onClick={(clickEvent) => changeFlagDisplay(clickEvent)}
-            className="btn btn-primary">
+    <Button size="lg" color="primary" className="button"
+        onClick={(clickEvent) => changeFlagDisplay(clickEvent)}>
                 Play Again
-    </button>
-    <button 
+    </Button>
+
+    <Button size="lg" color="primary" className="button"
         onClick={(clickEvent) => {handleAddToFavoritesButton(clickEvent); confirmFavorite(clickEvent)}}
-            className="btn btn-primary">
+           >
                 Add Flag to Favorites
-    </button>
+    </Button>
     </>
 )
 }

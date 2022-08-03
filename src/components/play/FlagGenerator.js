@@ -1,4 +1,5 @@
 import { useState, useEffect } from "react"
+import "./Play.css"
 
 
 export const FlagGenerator = ({ setterFlagFunction, flagIndex }) => {
@@ -57,10 +58,10 @@ export const FlagGenerator = ({ setterFlagFunction, flagIndex }) => {
     
     return (
         <>
-           <h2>Guess this Flag</h2>
+           <h2 className="h3">Guess this Flag</h2>
                    
-            <section className="flag">
-                    <img src={currentFlagObject?.flag} alt="flagPicture" /> 
+            <section className="flag_container">
+                    <img className="picture" src={currentFlagObject?.flag} alt="flagPicture" /> 
            </section>
         </>
        )
