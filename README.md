@@ -18,7 +18,8 @@ Users can add and edit notes about the flags in their favorites list.
 Users can delete the flags in their favorites list.
 
 ## Demo
-example ![Farmers Market Finder Demo alt text](demo/demo.gif)
+
+![Fun With Flags App demo] (https://user-images.githubusercontent.com/103229067/182937360-68b4144d-40d6-4f12-b53c-a71826ae3c8c.gif)
 
 
 ## Technologies Used
