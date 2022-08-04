@@ -37,6 +37,3 @@ javascript, css, react, reactstrap, postman, json, git, github, vscode, uizard
 
 ## Created by Brittany Mangum
 links to github account and linked in account
-
-
-
