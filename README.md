@@ -1,6 +1,7 @@
 # Fun With Flags: A Vexillology Quiz App
 
-Test your flag knowledge!
+There are 195 countries in the world, each with a unique flag. Trying to learn and distinguish them can be difficult. 
+Fun With Flags provides practice identifying country flags and allows users a curated collection of flags that they can access easily. 
 
 ## Application Overview
 
