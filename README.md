@@ -30,12 +30,13 @@ javascript, css, react, reactstrap, postman, json, git, github, vscode, uizard
 ## Running the Application
 
 1. Clone the repository and cd into the directory in the terminal
-```sh
-git@github.com:bmangum8/FunWithFlags.git
-```
+   ```sh
+      git@github.com:bmangum8/FunWithFlags.git
+   ```
 
 2. Access the data.
-<a href="https://github.com/bmangum8/FunWithFlagsServer" target="_blank"><img src="https://img.shields.io/badge/Click_here%20-%236ae689.svg?&style=for-the-badge&&logoColor=white" alt="Fun With Flags Server Repo" style="height: auto !important; width: auto !important;" /></a>
+
+    <a href="https://github.com/bmangum8/FunWithFlagsServer" target="_blank"><img src="https://img.shields.io/badge/Click_here%20-%236ae689.svg?&style=for-the-badge&&logoColor=white" alt="Fun With Flags Server Repo" style="height: auto !important; width: auto !important;" /></a>
 
 3. Launch the client.
 ```sh
