@@ -49,4 +49,4 @@ npm start
 
 
 ## Created by Brittany Mangum
-links to github account and linked in account
+<a href="https://github.com/bmangum8" target="_blank"><img src="https://img.shields.io/badge/github%20-%23121011.svg?&style=for-the-badge&logo=github&logoColor=white" alt="Brittany Mangum GitHub" style="height: auto !important;width: auto !important;" /></a> <a href="https://www.linkedin.com/in/brittany-t-mangum/" target="_blank"><img src="https://img.shields.io/badge/linkedin%20-%230077B5.svg?&style=for-the-badge&logo=linkedin&logoColor=white" alt="Brittany Mangum LinkedIn" style="height: auto !important;width: auto !important;" /></a>
